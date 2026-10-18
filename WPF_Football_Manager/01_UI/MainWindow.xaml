@@ -1,0 +1,96 @@
+﻿<Window x:Class="Football_Manager.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Футболен мениджър"
+        Height="363"
+        Width="520"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI">
+
+    <Canvas>
+        <!-- Заглавие МЕНЮ -->
+        <TextBlock x:Name="label1"
+                   Text="МЕНЮ"
+                   FontFamily="Segoe UI"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   Width="481"
+                   Height="25"
+                   Canvas.Left="12"
+                   Canvas.Top="9" />
+
+        <!-- Бутон Отбори -->
+        <Button x:Name="btnOpenClubs"
+                Content="Отбори"
+                FontFamily="Segoe UI"
+                FontSize="19"
+                Width="209"
+                Height="48"
+                Canvas.Left="12"
+                Canvas.Top="46"
+                Click="btnOpenClubs_Click" />
+
+        <!-- Бутон Лиги и мачове -->
+        <Button x:Name="btnOpenLeagues"
+                Content="Лиги и мачове"
+                FontFamily="Segoe UI"
+                FontSize="19"
+                Width="209"
+                Height="48"
+                Canvas.Left="284"
+                Canvas.Top="46"
+                Click="btnOpenLeagues_Click" />
+
+        <!-- Бутон Играчи и трансфери -->
+        <Button x:Name="btnOpenPlayers"
+                FontFamily="Segoe UI"
+                FontSize="19"
+                Width="209"
+                Height="59"
+                Canvas.Left="12"
+                Canvas.Top="130"
+                Click="btnOpenPlayers_Click">
+            <TextBlock Text="Играчи и трансфери"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center" />
+        </Button>
+
+        <!-- Бутон История на трансферите -->
+        <Button x:Name="btnOpenTransfers"
+                FontFamily="Segoe UI"
+                FontSize="19"
+                Width="209"
+                Height="59"
+                Canvas.Left="284"
+                Canvas.Top="130"
+                Click="btnOpenTransfers_Click">
+            <TextBlock Text="История на трансферите"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center" />
+        </Button>
+
+        <!-- Бутон Класиране -->
+        <Button x:Name="btnOpenStandings"
+                Content="Класиране"
+                FontFamily="Segoe UI"
+                FontSize="19"
+                Width="209"
+                Height="48"
+                Canvas.Left="12"
+                Canvas.Top="230"
+                Click="btnOpenStandings_Click" />
+
+        <!-- Бутон Статистика -->
+        <Button x:Name="btnOpenStatistics"
+                Content="Статистика"
+                FontFamily="Segoe UI"
+                FontSize="19"
+                Width="209"
+                Height="48"
+                Canvas.Left="284"
+                Canvas.Top="230"
+                Click="btnOpenStatistics_Click" />
+    </Canvas>
+</Window>
