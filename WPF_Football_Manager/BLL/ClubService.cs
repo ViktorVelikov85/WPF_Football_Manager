@@ -1,0 +1,62 @@
+﻿using System;
+using System.Data;
+using WPF_Football_Manager.DAL;
+using WPF_Football_Manager.Models;
+
+namespace WPF_Football_Manager.BLL
+{
+    public class ClubService
+    {
+        private readonly ClubsRepository _repo = new ClubsRepository();
+
+        // Зареждане на данни
+        public DataTable GetAllClubs() => _repo.GetAll();
+
+        // Операции с данни (Запис и Редакция)
+        public bool SaveClub(Club club, bool isNew, out string msg)
+        {
+            // Валидация на модела преди комуникация с базата данни
+            if (!IsValid(club, out msg)) return false;
+
+            try
+            {
+                if (isNew)
+                {
+                    _repo.Add(club.Name, club.City, club.Stadium, club.FoundedYear);
+                    msg = "Клубът е добавен успешно!";
+                }
+                else
+                {
+                    _repo.Update(club.Id, club.Name, club.City, club.Stadium, club.FoundedYear);
+                    msg = "Данните бяха обновени!";
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Прихващане на специфична грешка за дублиращо се име от базата данни
+                msg = ex.Message.Contains("Duplicate entry") ? "Вече съществува такъв клуб!" : "Грешка: " + ex.Message;
+                return false;
+            }
+        }
+
+        // Операции с данни (Изтриване)
+        public void DeleteClub(int id)
+        {
+            _repo.Delete(id);
+        }
+
+        // Бизнес валидация
+        private bool IsValid(Club club, out string msg)
+        {
+            // Проверка за задължителни текстови полета
+            if (string.IsNullOrWhiteSpace(club.Name) || string.IsNullOrWhiteSpace(club.City))
+            {
+                msg = "Моля, попълнете Име и Град!";
+                return false;
+            }
+            msg = "";
+            return true;
+        }
+    }
+}

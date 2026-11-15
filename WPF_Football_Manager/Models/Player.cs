@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Football_Manager.Models
+namespace WPF_Football_Manager.Models
 {
     public class Player
     {

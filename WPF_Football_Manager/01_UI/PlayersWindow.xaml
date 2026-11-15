@@ -1,0 +1,294 @@
+﻿<Window x:Class="WPF_Football_Manager.UI.PlayersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Играчи"
+        Width="971"
+        Height="785"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Loaded="Window_Loaded">
+
+    <Canvas>
+        <!-- Търсене по име -->
+        <TextBlock x:Name="label8"
+                   Text="Търси по име на играч"
+                   FontSize="19"
+                   Canvas.Left="30"
+                   Canvas.Top="9" />
+
+        <TextBox x:Name="txtSearchName"
+                 FontSize="19"
+                 Canvas.Left="30"
+                 Canvas.Top="38"
+                 Width="305"
+                 Height="33"
+                 VerticalContentAlignment="Center"
+                 TextChanged="txtSearchName_TextChanged" />
+
+        <!-- Бутон Изчисти филтри -->
+        <Button x:Name="btnClearFilters"
+                Content="Изчисти филтри"
+                Background="Coral"
+                FontSize="19"
+                Canvas.Left="483"
+                Canvas.Top="39"
+                Width="162"
+                Height="33"
+                Click="btnClearFilters_Click" />
+
+        <!-- Етикети и падащи менюта за филтриране -->
+        <TextBlock x:Name="label9"
+                   Text="Филтър по:"
+                   FontSize="19"
+                   Canvas.Left="537"
+                   Canvas.Top="10" />
+
+        <TextBlock x:Name="label10"
+                   Text="Отбор"
+                   FontSize="19"
+                   Canvas.Left="661"
+                   Canvas.Top="10" />
+
+        <ComboBox x:Name="cboFilterClub"
+                  FontSize="19"
+                  Canvas.Left="661"
+                  Canvas.Top="38"
+                  Width="142"
+                  Height="33"
+                  VerticalContentAlignment="Center"
+                  SelectionChanged="cboFilterClub_SelectedIndexChanged" />
+
+        <TextBlock x:Name="label11"
+                   Text="позиция"
+                   FontSize="19"
+                   Canvas.Left="827"
+                   Canvas.Top="10" />
+
+        <ComboBox x:Name="cboFilterPosition"
+                  FontSize="19"
+                  Canvas.Left="827"
+                  Canvas.Top="39"
+                  Width="103"
+                  Height="33"
+                  VerticalContentAlignment="Center"
+                  SelectionChanged="cboFilterPosition_SelectedIndexChanged">
+            <ComboBoxItem Content="Всички" />
+            <ComboBoxItem Content="GK" />
+            <ComboBoxItem Content="DF" />
+            <ComboBoxItem Content="MF" />
+            <ComboBoxItem Content="FW" />
+        </ComboBox>
+
+        <!-- Таблица с играчите -->
+        <DataGrid x:Name="dgvPlayers"
+                  Canvas.Left="29"
+                  Canvas.Top="87"
+                  Width="914"
+                  Height="434"
+                  FontFamily="Arial"
+                  FontSize="16"
+                  ColumnHeaderHeight="35"
+                  RowHeight="30"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="dgvPlayers_SelectionChanged"
+                  LoadingRow="dgvPlayers_LoadingRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Име"
+                                    Binding="{Binding full_name}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Отбор"
+                                    Binding="{Binding club_name}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Позиция"
+                                    Binding="{Binding position}"
+                                    Width="90" />
+                <DataGridTextColumn Header="№"
+                                    Binding="{Binding shirt_number}"
+                                    Width="50" />
+                <DataGridTextColumn Header="Роден на"
+                                    Binding="{Binding birth_date, StringFormat=dd.MM.yyyy}"
+                                    Width="120" />
+                <DataGridTextColumn Header="Статус"
+                                    Binding="{Binding status_bg}"
+                                    Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Име -->
+        <TextBlock x:Name="label1"
+                   Text="Име"
+                   FontSize="19"
+                   Canvas.Left="30"
+                   Canvas.Top="525" />
+
+        <TextBox x:Name="txtFirstName"
+                 FontSize="19"
+                 Canvas.Left="28"
+                 Canvas.Top="553"
+                 Width="209"
+                 Height="33"
+                 VerticalContentAlignment="Center" />
+
+        <!-- Фамилия -->
+        <TextBlock x:Name="label2"
+                   Text="Фамилия"
+                   FontSize="19"
+                   Canvas.Left="28"
+                   Canvas.Top="595" />
+
+        <TextBox x:Name="txtLastName"
+                 FontSize="19"
+                 Canvas.Left="28"
+                 Canvas.Top="623"
+                 Width="209"
+                 Height="33"
+                 VerticalContentAlignment="Center" />
+
+        <!-- Номер на тениската -->
+        <TextBlock x:Name="label3"
+                   Text="Номер на тениската"
+                   FontSize="19"
+                   Canvas.Left="28"
+                   Canvas.Top="667" />
+
+        <TextBox x:Name="txtShirtNumber"
+                 Text="1"
+                 FontSize="19"
+                 Canvas.Left="28"
+                 Canvas.Top="695"
+                 Width="120"
+                 Height="33"
+                 VerticalContentAlignment="Center" />
+
+        <!-- Отбор -->
+        <TextBlock x:Name="label6"
+                   Text="Отбор"
+                   FontSize="19"
+                   Canvas.Left="290"
+                   Canvas.Top="524" />
+
+        <ComboBox x:Name="cboClub"
+                  FontSize="19"
+                  Canvas.Left="290"
+                  Canvas.Top="552"
+                  Width="200"
+                  Height="33"
+                  VerticalContentAlignment="Center" />
+
+        <!-- Дата на раждане -->
+        <TextBlock x:Name="label5"
+                   Text="Дата на раждане"
+                   FontSize="19"
+                   Canvas.Left="290"
+                   Canvas.Top="594" />
+
+        <DatePicker x:Name="dtpBirthDate"
+                    FontSize="19"
+                    Canvas.Left="290"
+                    Canvas.Top="622"
+                    Width="215"
+                    Height="33"
+                    VerticalContentAlignment="Center" />
+
+        <!-- Статус -->
+        <TextBlock x:Name="label4"
+                   Text="Статус"
+                   FontSize="19"
+                   Canvas.Left="290"
+                   Canvas.Top="667" />
+
+        <ComboBox x:Name="cboStatus"
+                  FontSize="19"
+                  Canvas.Left="290"
+                  Canvas.Top="695"
+                  Width="160"
+                  Height="33"
+                  VerticalContentAlignment="Center">
+            <ComboBoxItem Content="Активен" />
+            <ComboBoxItem Content="Контузен" />
+            <ComboBoxItem Content="Наказан" />
+        </ComboBox>
+
+        <!-- Позиция -->
+        <TextBlock x:Name="label7"
+                   Text="Позиция"
+                   FontSize="19"
+                   Canvas.Left="526"
+                   Canvas.Top="525" />
+
+        <ComboBox x:Name="cboPosition"
+                  FontSize="19"
+                  Canvas.Left="526"
+                  Canvas.Top="553"
+                  Width="121"
+                  Height="33"
+                  VerticalContentAlignment="Center">
+            <ComboBoxItem Content="GK" />
+            <ComboBoxItem Content="DF" />
+            <ComboBoxItem Content="MF" />
+            <ComboBoxItem Content="FW" />
+        </ComboBox>
+
+        <!-- Бутон Трансфер -->
+        <Button x:Name="btnTransfer"
+                Content="Трансфер"
+                FontSize="19"
+                Canvas.Left="537"
+                Canvas.Top="667"
+                Width="120"
+                Height="60"
+                Click="btnTransfer_Click" />
+
+        <!-- Бутон Добави -->
+        <Button x:Name="btnAdd"
+                Content="Добави"
+                Background="LightGreen"
+                FontSize="19"
+                Canvas.Left="674"
+                Canvas.Top="552"
+                Width="120"
+                Height="60"
+                Click="btnAdd_Click" />
+
+        <!-- Бутон Обнови -->
+        <Button x:Name="btnUpdate"
+                Content="Обнови"
+                Background="LightBlue"
+                FontSize="19"
+                Canvas.Left="811"
+                Canvas.Top="552"
+                Width="120"
+                Height="60"
+                Click="btnUpdate_Click" />
+
+        <!-- Бутон Изчисти -->
+        <Button x:Name="btnClear"
+                Content="Изчисти"
+                FontSize="19"
+                Canvas.Left="674"
+                Canvas.Top="667"
+                Width="120"
+                Height="60"
+                Click="btnClear_Click" />
+
+        <!-- Бутон Изтрий -->
+        <Button x:Name="btnDelete"
+                Content="Изтрий"
+                Background="Coral"
+                FontSize="19"
+                Canvas.Left="811"
+                Canvas.Top="667"
+                Width="120"
+                Height="60"
+                Click="btnDelete_Click" />
+    </Canvas>
+</Window>

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Football_Manager.UI
+namespace WPF_Football_Manager.UI
 {
     public partial class MainWindow : Window
     {
@@ -11,32 +11,38 @@ namespace Football_Manager.UI
 
         private void btnOpenClubs_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Отваряне на прозореца за отбори
+            ClubsWindow clubsWindow = new ClubsWindow();
+            clubsWindow.ShowDialog();
         }
 
         private void btnOpenLeagues_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Отваряне на прозореца за лиги
+            LeaguesWindow leaguesWindow = new LeaguesWindow();
+            leaguesWindow.ShowDialog();
         }
 
         private void btnOpenPlayers_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Отваряне на прозореца за играчи
+            PlayersWindow playersWindow = new PlayersWindow();
+            playersWindow.ShowDialog();
         }
 
         private void btnOpenTransfers_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Отваряне на прозореца за трансфери
+            TransfersHistoryWindow transfersHistoryWindow = new TransfersHistoryWindow();
+            transfersHistoryWindow.ShowDialog();
         }
 
         private void btnOpenStandings_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Отваряне на прозореца за класиране
+            StandingsWindow standingsWindow = new StandingsWindow();
+            standingsWindow.ShowDialog();
         }
 
         private void btnOpenStatistics_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Отваряне на прозореца за статистика
+            PlayersStatisticsWindow statisticsWindow = new PlayersStatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

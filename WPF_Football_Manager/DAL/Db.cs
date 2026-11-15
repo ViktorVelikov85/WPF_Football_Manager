@@ -1,0 +1,40 @@
+﻿using MySql.Data.MySqlClient;
+using System.Data;
+
+namespace WPF_Football_Manager.DAL
+{
+    public static class Db
+    {
+        public static string connString = "server=localhost;database=wpf_football_manager;uid=root;pwd=;charset=utf8;";
+
+        public static MySqlConnection GetConnection() => new MySqlConnection(connString);
+
+        public static void Execute(string sql, MySqlParameter[] parameters = null)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var cmd = new MySqlCommand(sql, conn))
+                {
+                    if (parameters != null) cmd.Parameters.AddRange(parameters);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public static DataTable GetTable(string sql, MySqlParameter[] parameters = null)
+        {
+            DataTable table = new DataTable();
+            using (MySqlConnection conn = GetConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                adapter.Fill(table);
+            }
+            return table;
+        }
+    }
+}

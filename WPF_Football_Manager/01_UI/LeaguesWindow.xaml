@@ -1,0 +1,334 @@
+﻿<Window x:Class="WPF_Football_Manager.UI.LeaguesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление на лиги"
+        Width="1543"
+        Height="809"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Loaded="Window_Loaded">
+
+    <Canvas>
+        <!-- ========================================================= -->
+        <!-- СЕКЦИЯ 1: ЛИГИ (ЛЯВО)                                     -->
+        <!-- ========================================================= -->
+
+        <TextBlock x:Name="label4"
+                   Text="Лиги"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   Canvas.Left="157"
+                   Canvas.Top="4" />
+
+        <DataGrid x:Name="dgvLeagues"
+                  Canvas.Left="26"
+                  Canvas.Top="32"
+                  Width="339"
+                  Height="459"
+                  FontFamily="Arial"
+                  FontSize="16"
+                  RowHeight="30"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="dgvLeagues_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Лига"
+                                    Binding="{Binding name}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Сезон"
+                                    Binding="{Binding season}"
+                                    Width="150" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Име на лига -->
+        <TextBlock x:Name="label1"
+                   Text="Име на лига"
+                   FontSize="19"
+                   Canvas.Left="26"
+                   Canvas.Top="496" />
+
+        <TextBox x:Name="txtName"
+                 FontSize="19"
+                 Canvas.Left="26"
+                 Canvas.Top="524"
+                 Width="261"
+                 Height="33"
+                 VerticalContentAlignment="Center" />
+
+        <!-- Сезон -->
+        <TextBlock x:Name="label2"
+                   Text="Сезон (Формат:ГГГГ/ГГГГ)"
+                   FontSize="19"
+                   Canvas.Left="26"
+                   Canvas.Top="565" />
+
+        <TextBox x:Name="txtSeason"
+                 FontSize="19"
+                 Canvas.Left="26"
+                 Canvas.Top="593"
+                 Width="137"
+                 Height="33"
+                 VerticalContentAlignment="Center" />
+
+        <!-- Бутони за лиги -->
+        <Button x:Name="btnAddLeague"
+                Content="Добави Лига"
+                Background="LightGreen"
+                FontSize="19"
+                Canvas.Left="24"
+                Canvas.Top="637"
+                Width="144"
+                Height="50"
+                Click="btnAddLeague_Click" />
+
+        <Button x:Name="btnUpdateLeague"
+                Content="Обнови"
+                Background="LightBlue"
+                FontSize="19"
+                Canvas.Left="221"
+                Canvas.Top="637"
+                Width="144"
+                Height="50"
+                Click="btnUpdateLeague_Click" />
+
+        <Button x:Name="btnDeleteLeague"
+                Content="Изтрий Лига"
+                Background="Coral"
+                FontSize="19"
+                Canvas.Left="24"
+                Canvas.Top="703"
+                Width="144"
+                Height="50"
+                Click="btnDeleteLeague_Click" />
+
+        <Button x:Name="btnClear"
+                Content="Изчисти"
+                FontSize="19"
+                Canvas.Left="221"
+                Canvas.Top="703"
+                Width="144"
+                Height="50"
+                Click="btnClear_Click" />
+
+        <!-- Вертикален разделител 1 -->
+        <Border x:Name="lineSeparator"
+                Background="LightGray"
+                Canvas.Left="402"
+                Canvas.Top="44"
+                Width="1"
+                Height="700" />
+
+        <!-- ========================================================= -->
+        <!-- СЕКЦИЯ 2: УЧАСТНИЦИ (СРЕДА)                               -->
+        <!-- ========================================================= -->
+
+        <TextBlock x:Name="label5"
+                   Text="Участници"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   Canvas.Left="546"
+                   Canvas.Top="4" />
+
+        <DataGrid x:Name="dgvParticipants"
+                  Canvas.Left="427"
+                  Canvas.Top="32"
+                  Width="341"
+                  Height="459"
+                  FontFamily="Arial"
+                  FontSize="16"
+                  RowHeight="30"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Отбор"
+                                    Binding="{Binding name}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Град"
+                                    Binding="{Binding city}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Избор на клуб за добавяне -->
+        <TextBlock x:Name="label3"
+                   Text="Избор на клуб за добавяне"
+                   FontSize="19"
+                   Canvas.Left="471"
+                   Canvas.Top="510" />
+
+        <ComboBox x:Name="cboAvailableClubs"
+                  FontSize="19"
+                  Canvas.Left="468"
+                  Canvas.Top="538"
+                  Width="251"
+                  Height="33"
+                  VerticalContentAlignment="Center" />
+
+        <!-- Бутони за клубове в лигата -->
+        <Button x:Name="btnAddClub"
+                Content="Добави клуб"
+                Background="LightGreen"
+                FontSize="19"
+                Canvas.Left="442"
+                Canvas.Top="614"
+                Width="144"
+                Height="50"
+                Click="btnAddClub_Click" />
+
+        <Button x:Name="btnRemoveClub"
+                Content="Махни клуб"
+                Background="Coral"
+                FontSize="19"
+                Canvas.Left="624"
+                Canvas.Top="614"
+                Width="144"
+                Height="50"
+                Click="btnRemoveClub_Click" />
+
+        <!-- Вертикален разделител 2 -->
+        <Border x:Name="panel1"
+                Background="LightGray"
+                Canvas.Left="789"
+                Canvas.Top="44"
+                Width="1"
+                Height="700" />
+
+        <!-- ========================================================= -->
+        <!-- СЕКЦИЯ 3: ГРАФИК (ДЯСНО)                                  -->
+        <!-- ========================================================= -->
+
+        <TextBlock x:Name="label6"
+                   Text="График"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   Canvas.Left="1138"
+                   Canvas.Top="4" />
+
+        <DataGrid x:Name="dgvSchedule"
+                  Canvas.Left="807"
+                  Canvas.Top="32"
+                  Width="708"
+                  Height="459"
+                  FontFamily="Arial"
+                  FontSize="16"
+                  RowHeight="30"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  MouseDoubleClick="dgvSchedule_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Кръг"
+                                    Binding="{Binding round_no}"
+                                    Width="55">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Center" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Домакин"
+                                    Binding="{Binding home_team}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Гост"
+                                    Binding="{Binding away_team}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="ГД"
+                                    Binding="{Binding home_score}"
+                                    Width="45">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Center" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="ГГ"
+                                    Binding="{Binding away_score}"
+                                    Width="45">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Center" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Дата"
+                                    Binding="{Binding match_date, StringFormat=dd.MM.yyyy}"
+                                    Width="105">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Center" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridCheckBoxColumn Header="Изигран"
+                                        Binding="{Binding is_played}"
+                                        Width="80"
+                                        IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Бутон Генерирай график -->
+        <Button x:Name="btnGenerateSchedule"
+                Content="Генерирай график"
+                Background="LightGreen"
+                FontSize="19"
+                Canvas.Left="1058"
+                Canvas.Top="538"
+                Width="195"
+                Height="50"
+                Click="btnGenerateSchedule_Click" />
+
+        <!-- Бутон Управление на мач -->
+        <Button x:Name="btnManageMatch"
+                Content="Управление на мач"
+                Background="LightGreen"
+                FontSize="19"
+                Canvas.Left="1028"
+                Canvas.Top="635"
+                Width="251"
+                Height="52"
+                ToolTip="Може също така да щракнете два пъти върху мач в таблицата, за да го отворите директно."
+                Click="btnManageMatch_Click" />
+    </Canvas>
+</Window>

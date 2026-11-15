@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Football_Manager.Models
+namespace WPF_Football_Manager.Models
 {
     public class Match
     {

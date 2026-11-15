@@ -1,0 +1,90 @@
+﻿<Window x:Class="WPF_Football_Manager.UI.StandingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Класиране на отборите"
+        Width="816"
+        Height="489"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        FontFamily="Segoe UI"
+        Loaded="Window_Loaded">
+
+    <Canvas>
+        <!-- Таблица с класирането -->
+        <DataGrid x:Name="dgvStandings"
+                  Canvas.Left="12"
+                  Canvas.Top="12"
+                  Width="776"
+                  Height="289"
+                  FontFamily="Arial"
+                  FontSize="16"
+                  RowHeight="35"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Отбор"
+                                    Binding="{Binding ClubName}"
+                                    Width="1.8*" />
+
+                <DataGridTextColumn Header="Мачове"
+                                    Binding="{Binding MatchesPlayed}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Победи"
+                                    Binding="{Binding Wins}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Равни"
+                                    Binding="{Binding Draws}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Загуби"
+                                    Binding="{Binding Losses}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Голова разлика"
+                                    Binding="{Binding GoalDifference}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Точки"
+                                    Binding="{Binding Points}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Етикет Изберете лига -->
+        <TextBlock x:Name="lblSelectLeague"
+                   Text="Изберете лига:"
+                   FontSize="19"
+                   Canvas.Left="176"
+                   Canvas.Top="333" />
+
+        <!-- Падащо меню за избор на лига -->
+        <ComboBox x:Name="cboLeagues"
+                  FontSize="19"
+                  Canvas.Left="323"
+                  Canvas.Top="330"
+                  Width="299"
+                  Height="33"
+                  VerticalContentAlignment="Center"
+                  SelectionChanged="cboLeagues_SelectionChanged" />
+
+        <!-- Бутон Презареди -->
+        <Button x:Name="btnRefresh"
+                Content="Презареди"
+                Background="LightGreen"
+                FontSize="19"
+                Canvas.Left="323"
+                Canvas.Top="391"
+                Width="145"
+                Height="47"
+                Click="btnRefresh_Click" />
+    </Canvas>
+</Window>

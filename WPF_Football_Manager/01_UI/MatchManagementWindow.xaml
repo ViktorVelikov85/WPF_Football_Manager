@@ -1,0 +1,185 @@
+﻿<Window x:Class="WPF_Football_Manager.UI.MatchManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управление на мач"
+        Width="761"
+        Height="720"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        FontFamily="Arial"
+        Loaded="Window_Loaded">
+
+    <Canvas>
+        <!-- Домакин -->
+        <TextBlock x:Name="lblHomeTeam"
+                   Text="Домакин"
+                   FontFamily="Arial"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   TextAlignment="Right"
+                   Canvas.Left="12"
+                   Canvas.Top="23"
+                   Width="330"
+                   Height="30" />
+
+        <!-- VS -->
+        <TextBlock x:Name="lblVs"
+                   Text="VS"
+                   FontFamily="Arial"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   Canvas.Left="348"
+                   Canvas.Top="23"
+                   Width="39"
+                   Height="30" />
+
+        <!-- Гост -->
+        <TextBlock x:Name="lblAwayTeam"
+                   Text="Гост"
+                   FontFamily="Arial"
+                   FontSize="19"
+                   FontWeight="Bold"
+                   TextAlignment="Left"
+                   Canvas.Left="393"
+                   Canvas.Top="23"
+                   Width="341"
+                   Height="30" />
+
+        <!-- Резултат -->
+        <TextBlock x:Name="lblResult"
+                   Text="0 - 0"
+                   FontFamily="Arial"
+                   FontSize="27"
+                   FontWeight="Bold"
+                   TextAlignment="Center"
+                   Canvas.Left="306"
+                   Canvas.Top="52"
+                   Width="124"
+                   Height="29" />
+
+        <!-- Таблица със събитията в мача -->
+        <DataGrid x:Name="dgvEvents"
+                  Canvas.Left="12"
+                  Canvas.Top="84"
+                  Width="723"
+                  Height="363"
+                  FontFamily="Arial"
+                  FontSize="16"
+                  RowHeight="30"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Мин"
+                                    Binding="{Binding minute}"
+                                    Width="50" />
+
+                <DataGridTextColumn Header="Събитие"
+                                    Binding="{Binding event_type}"
+                                    Width="140" />
+
+                <DataGridTextColumn Header="Играч"
+                                    Binding="{Binding player_name}"
+                                    Width="*" />
+
+                <DataGridTextColumn Header="Отбор"
+                                    Binding="{Binding club_name}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Минута на събитие -->
+        <TextBlock x:Name="label1"
+                   Text="Минута на събитие"
+                   FontFamily="Arial"
+                   FontSize="19"
+                   Canvas.Left="22"
+                   Canvas.Top="486" />
+
+        <TextBox x:Name="txtMinute"
+                 Text="0"
+                 FontFamily="Arial"
+                 FontSize="19"
+                 Canvas.Left="74"
+                 Canvas.Top="512"
+                 Width="74"
+                 Height="29"
+                 VerticalContentAlignment="Center" />
+
+        <!-- Вид събитие -->
+        <TextBlock x:Name="label2"
+                   Text="Вид събитие"
+                   FontFamily="Arial"
+                   FontSize="19"
+                   Canvas.Left="204"
+                   Canvas.Top="484" />
+
+        <ComboBox x:Name="cboEventType"
+                  FontFamily="Arial"
+                  FontSize="19"
+                  Canvas.Left="207"
+                  Canvas.Top="512"
+                  Width="121"
+                  Height="30"
+                  VerticalContentAlignment="Center">
+            <ComboBoxItem Content="Гол" />
+            <ComboBoxItem Content="Жълт картон" />
+            <ComboBoxItem Content="Червен картон" />
+            <ComboBoxItem Content="Фаул" />
+        </ComboBox>
+
+        <!-- Играч -->
+        <TextBlock x:Name="label3"
+                   Text="Играч"
+                   FontFamily="Arial"
+                   FontSize="19"
+                   Canvas.Left="404"
+                   Canvas.Top="486" />
+
+        <ComboBox x:Name="cboPlayers"
+                  FontFamily="Arial"
+                  FontSize="19"
+                  Canvas.Left="404"
+                  Canvas.Top="511"
+                  Width="321"
+                  Height="30"
+                  VerticalContentAlignment="Center" />
+
+        <!-- Бутон Добави събитие -->
+        <Button x:Name="btnAddEvent"
+                Background="LightGreen"
+                FontFamily="Arial"
+                FontSize="19"
+                Canvas.Left="184"
+                Canvas.Top="576"
+                Width="144"
+                Height="64"
+                Click="btnAddEvent_Click">
+            <TextBlock Text="Добави събитие"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center" />
+        </Button>
+
+        <!-- Бутон Изтрий събитие -->
+        <Button x:Name="btnRemoveEvent"
+                Background="Coral"
+                FontFamily="Arial"
+                FontSize="19"
+                Canvas.Left="404"
+                Canvas.Top="576"
+                Width="144"
+                Height="64"
+                Click="btnRemoveEvent_Click">
+            <TextBlock Text="Изтрий събитие"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center" />
+        </Button>
+    </Canvas>
+</Window>
